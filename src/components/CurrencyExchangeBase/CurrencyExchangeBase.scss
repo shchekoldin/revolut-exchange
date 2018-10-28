@@ -1,0 +1,43 @@
+@import "~revolut/styles/_vars";
+
+.CurrencyExchangeBase {
+    flex: 1;
+    padding: 2.5em 1.5em 0;
+    box-sizing: border-box;
+    min-width: 100%;
+
+    .currencyAmount {
+        overflow: hidden;
+
+        .label {
+            font-size: 40px;
+            float: left;
+            margin-top: 6px;
+        }
+
+        input.control {
+            border: 1px solid lighten($body-color, 30%);
+            background: transparent;
+            width: 50%;
+        }
+
+        input.control:focus{
+            outline: none;
+        }
+
+        .amount {
+            font-size: 40px;
+            text-align: right;
+            float: right;
+            color: $font-color;
+        }
+    }
+
+    .sub {
+        margin-top: 0.5rem;
+        font-size: 0.9em;
+        color: lighten($body-color, 20%);
+        clear: both;
+        font-weight: bold;
+    }
+}

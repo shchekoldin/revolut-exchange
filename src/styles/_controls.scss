@@ -1,0 +1,19 @@
+.navButton {
+    background: transparent;
+    border: none;
+    font-size: 1em;
+    color: $font-color;
+    position: absolute;
+}
+
+.navButton[disabled] {
+    color: darken($font-color, 30%);
+}
+
+.navButton.left {
+    left: 0;
+}
+
+.navButton.right {
+    right: 0;
+}

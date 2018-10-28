@@ -1,0 +1,98 @@
+@import "~revolut/styles/_vars";
+@import "~revolut/styles/_mixins";
+@import "~revolut/styles/_controls";
+
+.CurrencyExchangeView {
+    @include fullScreen();
+
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        margin: 0.5em 0;
+        text-align: center;
+
+        .ratesLink {
+            color: $font-color;
+            background: rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            padding: 0.3em;
+        }
+    }
+
+    .currencyExchangeGroup {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        overflow: hidden;
+
+        &.quoted {
+            @include shadow();
+
+            .shadow:after {
+                content: "";
+                left: 50%;
+                position: absolute;
+                margin-left: -8px;
+                border-top: 16px solid $body-color;
+                border-right: 16px solid transparent;
+                border-left: 16px solid transparent;
+            }
+        }
+
+        .prevCurrency,
+        .nextCurrency {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1em;
+            background: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .prevCurrency {
+            left: 0;
+        }
+
+        .prevCurrency:hover {
+            opacity: 1;
+        }
+
+        .prevCurrency::after {
+            content: "<";
+            top: 50%;
+            position: absolute;
+            text-align: center;
+            width: 1em;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .nextCurrency {
+            right: 0;
+        }
+
+        .nextCurrency:hover {
+            opacity: 1;
+        }
+
+        .nextCurrency::after {
+            content: ">";
+            top: 50%;
+            position: absolute;
+            text-align: center;
+            width: 1em;
+            display: inline-block;
+            font-weight: bold;
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+}

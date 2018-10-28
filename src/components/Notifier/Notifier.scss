@@ -1,0 +1,14 @@
+.Notifier {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 255, 0, 0.5);
+    padding: 1em;
+    box-sizing: border-box;
+    z-index: 2;
+
+    &.hidden {
+        display: none;
+    }
+}

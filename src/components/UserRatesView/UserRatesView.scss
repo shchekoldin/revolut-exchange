@@ -1,0 +1,56 @@
+@import "~revolut/styles/_vars";
+@import "~revolut/styles/_mixins";
+@import "~revolut/styles/_controls";
+
+.UserRatesView {
+    @include fullScreen();
+
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        margin: 0.5em 0;
+        text-align: center;
+
+        .title {
+            color: $font-color;
+        }
+    }
+
+    .ratesList {
+        @include shadow();
+
+        position: relative;
+        flex: 1;
+        overflow: scroll;
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            li.rateItem {
+                padding: 1em;
+                overflow: hidden;
+                border-bottom: 1px solid darken($body-color, 30%);
+                position: relative;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                .baseCurrency {
+                    float: left;
+                    margin-top: 0.5em;
+                    position: relative;
+                }
+
+                .quotedCurrency {
+                    float: right;
+                    text-align: right;
+                    position: relative;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+@import "~revolut/styles/_vars";
+@import "~revolut/styles/_mixins";
+
+.CurrencyExchangeQuoted {
+    position: relative;
+    flex: 1;
+    padding: 2.5em 1.5em 0;
+    box-sizing: border-box;
+    min-width: 100%;
+
+    .currencyAmount {
+        overflow: hidden;
+
+        .label {
+            font-size: 40px;
+            float: left;
+            margin-top: 2px;
+        }
+
+        .amount {
+            font-size: 40px;
+            text-align: right;
+            float: right;
+            color: $font-color;
+            width: 60%;
+        }
+    }
+
+    .sub {
+        margin-top: 0.5rem;
+        font-size: 0.9em;
+        color: lighten($body-color, 20%);
+        clear: both;
+        font-weight: bold;
+
+        .currencyBalance {
+            float: left;
+        }
+
+        .rate {
+            float: right;
+        }
+    }
+}

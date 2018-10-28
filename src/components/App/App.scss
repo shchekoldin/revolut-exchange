@@ -1,0 +1,12 @@
+@import "~revolut/styles/_vars";
+@import "~revolut/styles/_mixins";
+
+.App {
+    @include fullScreen();
+
+    max-width: 300px;
+    margin: 0 auto;
+    position: relative;
+    color: $font-color;
+    background-color: $body-color;
+}

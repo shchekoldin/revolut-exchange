@@ -1,0 +1,18 @@
+@import "~revolut/styles/_vars";
+@import "~revolut/styles/_mixins";
+
+html, body {
+    @include fullScreen();
+}
+
+body {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+:global {
+    .fullScreen {
+        @include fullScreen();
+    }
+}

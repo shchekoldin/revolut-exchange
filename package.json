@@ -1,0 +1,110 @@
+{
+    "name": "revolut-exchange",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "git@github.com:twocapitals/revolut-exchange.git",
+    "author": "Alexander Shchekoldin <vrungelru@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "classnames": "^2.2.6",
+        "css-loader": "^1.0.0",
+        "file-loader": "^2.0.0",
+        "immutable": "^3.8.2",
+        "js-logger": "^1.5.0",
+        "react": "^16.5.2",
+        "react-dom": "^16.5.2",
+        "react-redux": "^5.0.7",
+        "react-router": "^4.3.1",
+        "react-router-dom": "^4.3.1",
+        "redux": "^4.0.1",
+        "redux-observable": "^1.0.0",
+        "rxjs": "^6.3.3",
+        "rxjs-compat": "^6.3.3",
+        "style-loader": "^0.23.1",
+        "url-loader": "^1.1.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.1.2",
+        "@babel/plugin-proposal-class-properties": "^7.1.0",
+        "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+        "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+        "@babel/preset-env": "^7.1.0",
+        "@babel/preset-flow": "^7.0.0",
+        "@babel/preset-react": "^7.0.0",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-eslint": "^10.0.1",
+        "babel-jest": "^23.6.0",
+        "babel-loader": "^8.0.4",
+        "babel-plugin-js-logger": "^1.0.17",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-react": "^6.24.1",
+        "chai": "^4.2.0",
+        "dirty-chai": "^2.0.1",
+        "dotenv-webpack": "^1.5.7",
+        "enzyme": "^3.7.0",
+        "enzyme-adapter-react-16": "^1.6.0",
+        "eslint": "^5.7.0",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-import-resolver-webpack": "^0.10.1",
+        "eslint-plugin-flowtype": "^3.0.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-jsx-a11y": "^6.1.2",
+        "eslint-plugin-react": "^7.11.1",
+        "flow-bin": "^0.83.0",
+        "html-webpack-plugin": "^3.2.0",
+        "identity-obj-proxy": "^3.0.0",
+        "jest": "^23.6.0",
+        "node-sass": "^4.9.4",
+        "react-test-renderer": "^16.6.0",
+        "sass-loader": "^7.1.0",
+        "sinon": "^7.1.0",
+        "webpack": "^4.20.2",
+        "webpack-cli": "^3.1.2",
+        "webpack-dev-server": "^3.1.9"
+    },
+    "jest": {
+        "collectCoverageFrom": [
+            "src/**/*.js"
+        ],
+        "testMatch": [
+            "<rootDir>/src/**/__tests__/**/*.js"
+        ],
+        "testEnvironment": "node",
+        "setupFiles": [
+            "<rootDir>/configs/jest/setup.js"
+        ],
+        "transform": {
+            "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+            "^.+\\.css$": "<rootDir>/configs/jest/cssTransform.js",
+            "^(?!.*\\.(js|css|json)$)": "<rootDir>/configs/jest/fileTransform.js"
+        },
+        "moduleFileExtensions": [
+            "js",
+            "json"
+        ],
+        "moduleNameMapper": {
+            "^.+\\.scss$": "identity-obj-proxy",
+            "^revolut/(.+)$": "<rootDir>/src/$1"
+        }
+    },
+    "babel": {
+        "presets": [
+            "@babel/preset-env",
+            "@babel/react",
+            "@babel/flow"
+        ],
+        "plugins": [
+            "@babel/plugin-proposal-class-properties",
+            "@babel/plugin-proposal-object-rest-spread",
+            "@babel/plugin-syntax-dynamic-import",
+            "js-logger"
+        ]
+    },
+    "scripts": {
+        "dev:serve": "webpack-dev-server --config configs/webpack/dev.js --mode development",
+        "dev:build": "webpack --config configs/webpack/dev.js --mode development",
+        "test:flow": "flow",
+        "test:lint": "eslint ./src",
+        "test:jest": "BABEL_ENV=test jest --coverage --env=jsdom"
+    }
+}
