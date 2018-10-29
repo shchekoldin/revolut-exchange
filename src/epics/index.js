@@ -47,7 +47,7 @@ export const fetchLatestRates = (action$) => action$.pipe(
 
 const pollLatestRates = (action$) => action$.pipe(
     ofType(LatestRates.POLL),
-    switchMap(() => timer(0, 100000).pipe(
+    switchMap(() => timer(0, 10000).pipe(
         exhaustMap(() => of(
             {
                 type: LatestRates.FETCH,
