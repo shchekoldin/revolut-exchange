@@ -120,13 +120,16 @@ const INITIAL_NOTIFIER = {
 const notifierReducer = (state = INITIAL_NOTIFIER, action) => {
     switch (action.type) {
         case Notifier.SHOW_NOTIFICATION:
-            const {text} = action.payload;
+            const {text, type} = action.payload;
 
             return {
                 ...state,
                 notifications: [
                     ...state.notifications,
-                    text,
+                    {
+                        text,
+                        type,
+                    },
                 ],
             };
 

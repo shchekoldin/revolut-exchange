@@ -1,19 +1,21 @@
 import {combineEpics, ofType} from 'redux-observable';
 import {
+    catchError,
     exhaustMap,
     ignoreElements,
     map,
     mergeMap,
     switchMap,
-    catchError,
 } from 'rxjs/operators';
 import {of, timer} from 'rxjs';
 import {
     CurrencyExchange,
     LatestRates,
-    UserAccount,
+    NotificationMode,
     Notifier,
+    UserAccount,
 } from 'revolut/lib/constants';
+import actions from 'revolut/actions';
 import api from 'revolut/api';
 
 const {openExchangeRates} = api;
@@ -35,12 +37,10 @@ export const fetchLatestRates = (action$) => action$.pipe(
             };
         }),
         catchError(() => {
-            return of({
-                type: Notifier.SHOW_NOTIFICATION,
-                payload: {
-                    text: 'Rates were loaded with error',
-                },
-            });
+            return of(actions.notifier.showNotification(
+                'Rates were loaded with error',
+                NotificationMode.ERROR,
+            ));
         }),
     )),
 );
@@ -48,6 +48,7 @@ export const fetchLatestRates = (action$) => action$.pipe(
 const pollLatestRates = (action$) => action$.pipe(
     ofType(LatestRates.POLL),
     switchMap(() => timer(0, 10000).pipe(
+        // TODO: Better to load at once
         exhaustMap(() => of(
             {
                 type: LatestRates.FETCH,
@@ -87,12 +88,10 @@ const exchange = (action$) => action$.pipe(
         const {payload} = action;
 
         if (!payload.baseAmount || (payload.baseAmount <= 0)) {
-            return of({
-                type: Notifier.SHOW_NOTIFICATION,
-                payload: {
-                    text: 'Invalid amount',
-                },
-            });
+            return of(actions.notifier.showNotification(
+                'Invalid amount',
+                NotificationMode.ERROR,
+            ));
         }
 
         const newBalance = {
@@ -101,42 +100,28 @@ const exchange = (action$) => action$.pipe(
         };
 
         if (payload.baseCurrency === payload.quoteCurrency) {
-            return of({
-                type: Notifier.SHOW_NOTIFICATION,
-                payload: {
-                    text: 'Can\'t exchange the same currency',
-                },
-            });
+            return of(actions.notifier.showNotification(
+                'Can\'t exchange the same currency',
+                NotificationMode.ERROR,
+            ));
         }
 
         if (newBalance[payload.baseCurrency] < 0) {
-            return of({
-                type: Notifier.SHOW_NOTIFICATION,
-                payload: {
-                    text: 'Not enough funds',
-                },
-            });
+            return of(actions.notifier.showNotification(
+                'Not enough funds',
+                NotificationMode.ERROR,
+            ));
         }
 
         return of(
-            {
-                type: Notifier.SHOW_NOTIFICATION,
-                payload: {
-                    text: 'Success',
-                },
-            },
+            actions.notifier.showNotification('Success'),
             {
                 type: UserAccount.UPDATE_BALANCE,
                 payload: {
                     balance: newBalance,
                 },
             },
-            {
-                type: CurrencyExchange.UPDATE_BASE_AMOUNT,
-                payload: {
-                    value: null,
-                },
-            },
+            actions.currencyExchangeView.updateBaseAmount(null),
         );
     }),
 );
