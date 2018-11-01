@@ -20,3 +20,8 @@ export class Notifier {
     static SHOW_NOTIFICATION = 'Notifier.SHOW_NOTIFICATION';
     static REMOVE_OLD_NOTIFICATION = 'Notifier.REMOVE_OLD_NOTIFICATION';
 }
+
+export class NotificationMode {
+    static INFO = 'NotificationMode.INFO';
+    static ERROR = 'NotificationMode.ERROR';
+}

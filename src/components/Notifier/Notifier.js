@@ -4,17 +4,23 @@ import cx from 'classnames/bind';
 import styles from './Notifier.scss';
 
 type Props = {
-    notifications: Array<string>,
+    notifications: Array<{text: string, type: string}>,
 };
 
 class Notifier extends React.Component<Props> {
     render() {
         const {notifications} = this.props;
-        const hidden = (notifications.length === 0);
+        const notification = notifications.pop();
+
+        if (!notification) {
+            return null;
+        }
+
+        const cssType = notification.type.split('.').pop().toLowerCase();
 
         return (
-            <div className={cx(styles.Notifier, {[styles.hidden]: hidden})}>
-                {notifications.pop()}
+            <div className={cx(styles.Notifier, styles[cssType])}>
+                {notification.text}
             </div>
         );
     }

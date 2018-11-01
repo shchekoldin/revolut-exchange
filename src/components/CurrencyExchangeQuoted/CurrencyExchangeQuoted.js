@@ -21,15 +21,23 @@ class CurrencyExchangeQuoted extends React.Component<Props> {
             balance,
             baseAmount,
         } = this.props;
-        const baseRate = 1 / quoteRate;
-        const quoteAmount = baseAmount * quoteRate;
+
+        const isRateAvailable = !!quoteRate;
+
+        let baseRate = null;
+        let quoteAmount = null;
+
+        if (isRateAvailable) {
+            baseRate = 1 / quoteRate;
+            quoteAmount = baseAmount * quoteRate;
+        }
 
         return (
             <div className={styles.CurrencyExchangeQuoted}>
                 <div>
                     <div className={styles.currencyAmount}>
                         <div className={styles.label}>{quoteCurrency}</div>
-                        {(quoteAmount > 0) ? (
+                        {(quoteAmount && (quoteAmount > 0)) ? (
                             <div className={styles.amount}>+{money.format(quoteAmount, 1)}</div>
                         ) : null}
                     </div>
@@ -40,7 +48,7 @@ class CurrencyExchangeQuoted extends React.Component<Props> {
                         <div className={styles.rate}>
                             <span>1{i18n.currency[quoteCurrency]}</span>
                             <span>=</span>
-                            <span>{i18n.currency[baseCurrency]}{money.format(baseRate)}</span>
+                            <span>{i18n.currency[baseCurrency]}{baseRate ? money.format(baseRate) : '…'}</span>
                         </div>
                     </div>
                 </div>

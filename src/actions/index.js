@@ -3,6 +3,7 @@ import {
     CurrencyExchange,
     LatestRates,
     Notifier,
+    NotificationMode,
 } from 'revolut/lib/constants';
 
 const openExchangeRatesApi = {
@@ -35,7 +36,7 @@ const currencyExchangeView = {
         },
     }),
 
-    updateBaseAmount: (value: number) => ({
+    updateBaseAmount: (value: ?number) => ({
         type: CurrencyExchange.UPDATE_BASE_AMOUNT,
         payload: {
             value,
@@ -68,10 +69,11 @@ const addUserRateView = {
 };
 
 const notifier = {
-    showNotification: (text: string) => ({
+    showNotification: (text: string, type: string = NotificationMode.INFO) => ({
         type: Notifier.SHOW_NOTIFICATION,
         payload: {
             text,
+            type,
         },
     }),
 };

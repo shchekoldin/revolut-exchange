@@ -34,17 +34,11 @@ class CurrencyExchangeView extends React.Component<Props> {
             changeQuoteCurrency,
         } = this.props;
 
-        if (!rates) {
-            return null;
-        }
-
         const baseRates = rates[view.baseCurrency];
         const quoteRate = baseRates[view.quoteCurrency];
         const baseAmount = view.baseAmount || '';
 
-        if (!baseRates || !quoteRate) {
-            return null;
-        }
+        const isRatesAvailable = !!baseRates && !!quoteRate;
 
         const getCurrencyIdx = (currency: string, delta: number) => {
             const currencyIdx = view.currencies.indexOf(currency) + delta;
@@ -88,10 +82,16 @@ class CurrencyExchangeView extends React.Component<Props> {
                     >
                         Cancel
                     </button>
-                    <Link className={styles.ratesLink} to="/exchange/rates/">
+                    <Link
+                        className={cx(styles.ratesLink, {[styles.disabled]: !isRatesAvailable})}
+                        to="/exchange/rates/"
+                    >
                         <span>{i18n.currency[view.baseCurrency]}1</span>
                         <span> = </span>
-                        <span>{i18n.currency[view.quoteCurrency]}{money.formatRate(quoteRate)}</span>
+                        <span>
+                            {i18n.currency[view.quoteCurrency]}
+                            {isRatesAvailable ? money.formatRate(quoteRate) : '…'}
+                        </span>
                     </Link>
                     <button
                         className={cx(styles.navButton, styles.right)}
@@ -99,6 +99,7 @@ class CurrencyExchangeView extends React.Component<Props> {
                         onClick={() => {
                             return exchange(view.baseCurrency, view.quoteCurrency, quoteRate, balance, view.baseAmount);
                         }}
+                        {...(!isRatesAvailable ? {disabled: 'disabled'} : null)}
                     >
                         Exchange
                     </button>
