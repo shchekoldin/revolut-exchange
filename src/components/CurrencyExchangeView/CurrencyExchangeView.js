@@ -90,7 +90,7 @@ class CurrencyExchangeView extends React.Component<Props> {
                         <span> = </span>
                         <span>
                             {i18n.currency[view.quoteCurrency]}
-                            {isRatesAvailable ? money.formatRate(quoteRate) : '…'}
+                            {isRatesAvailable ? money.formatRate(quoteRate) : '...'}
                         </span>
                     </Link>
                     <button

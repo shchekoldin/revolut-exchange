@@ -48,7 +48,7 @@ class CurrencyExchangeQuoted extends React.Component<Props> {
                         <div className={styles.rate}>
                             <span>1{i18n.currency[quoteCurrency]}</span>
                             <span>=</span>
-                            <span>{i18n.currency[baseCurrency]}{baseRate ? money.format(baseRate) : '…'}</span>
+                            <span>{i18n.currency[baseCurrency]}{baseRate ? money.format(baseRate) : '...'}</span>
                         </div>
                     </div>
                 </div>
