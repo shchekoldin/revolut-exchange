@@ -27,10 +27,9 @@ class CurrencyExchangeBase extends React.Component<Props> {
                     <div className={styles.label}>{baseCurrency}</div>
                     <input
                         className={cx(styles.control, styles.amount)}
-                        type="text"
+                        type="number"
                         value={baseAmount}
-                        maxLength={4}
-                        pattern="[0-9]*"
+                        step="0.01"
                         autoFocus
                         onChange={(e) => {
                             const t = e.target;
