@@ -20,7 +20,8 @@ function convertRates(baseCurrency, quotedCurrency, baseRates) {
 function getLatest(baseCurrency) {
     logger.debug('Loading latest rates:', baseCurrency);
 
-    const url = `//openexchangerates.org/api/latest.json?app_id=${process.env.APP_ID}`;
+    const appId = process.env.OPEN_EXCHANGE_RATES_APP_ID;
+    const url = `//openexchangerates.org/api/latest.json?app_id=${appId}`;
     const urlWithCurrency = `${url}&base=${baseCurrency}`;
 
     return ajax(urlWithCurrency).pipe(
