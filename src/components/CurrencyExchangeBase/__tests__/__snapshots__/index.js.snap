@@ -34,10 +34,9 @@ ShallowWrapper {
           <input
             autoFocus={true}
             className="control amount"
-            maxLength={4}
             onChange={[Function]}
-            pattern="[0-9]*"
-            type="text"
+            step="0.01"
+            type="number"
             value={50}
           />
         </div>,
@@ -71,10 +70,9 @@ ShallowWrapper {
             <input
               autoFocus={true}
               className="control amount"
-              maxLength={4}
               onChange={[Function]}
-              pattern="[0-9]*"
-              type="text"
+              step="0.01"
+              type="number"
               value={50}
             />,
           ],
@@ -101,10 +99,9 @@ ShallowWrapper {
             "props": Object {
               "autoFocus": true,
               "className": "control amount",
-              "maxLength": 4,
               "onChange": [Function],
-              "pattern": "[0-9]*",
-              "type": "text",
+              "step": "0.01",
+              "type": "number",
               "value": 50,
             },
             "ref": null,
@@ -172,10 +169,9 @@ ShallowWrapper {
             <input
               autoFocus={true}
               className="control amount"
-              maxLength={4}
               onChange={[Function]}
-              pattern="[0-9]*"
-              type="text"
+              step="0.01"
+              type="number"
               value={50}
             />
           </div>,
@@ -209,10 +205,9 @@ ShallowWrapper {
               <input
                 autoFocus={true}
                 className="control amount"
-                maxLength={4}
                 onChange={[Function]}
-                pattern="[0-9]*"
-                type="text"
+                step="0.01"
+                type="number"
                 value={50}
               />,
             ],
@@ -239,10 +234,9 @@ ShallowWrapper {
               "props": Object {
                 "autoFocus": true,
                 "className": "control amount",
-                "maxLength": 4,
                 "onChange": [Function],
-                "pattern": "[0-9]*",
-                "type": "text",
+                "step": "0.01",
+                "type": "number",
                 "value": 50,
               },
               "ref": null,
