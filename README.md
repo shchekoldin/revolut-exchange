@@ -1,4 +1,4 @@
-# revolut-exchange
+# revolut-exchange [![CircleCI](https://circleci.com/gh/shchekoldin/revolut-exchange.svg?style=svg)](https://circleci.com/gh/shchekoldin/revolut-exchange)
 
 ## How to run
 1. Install deps using `npm install`
